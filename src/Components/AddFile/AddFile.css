@@ -1,0 +1,785 @@
+.main-home-container {
+    height: 100vh;
+    background-color: #f1f5f9;
+    display: flex;
+    width: 100%;
+    transition: 0.3s ease;
+}
+
+.left-navbar {
+    background-color: white;
+    height: 100vh;
+    position: relative;
+    border: none !important;
+    flex-basis: 20%;
+}
+
+.left-navbar .logo {
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+}
+
+.left-navbar .logo img {
+    width: 70px;
+    height: 70px;
+    margin-top: 70px;
+}
+
+.cross {
+    display: flex;
+    justify-content: right;
+    margin-right: 30px;
+    margin-top: 20px;
+    visibility: hidden;
+}
+
+.cross img {
+    width: 30px;
+    height: 30px;
+}
+
+.menu-text h4 {
+    text-align: center;
+    font-weight: 300;
+    font-size: 16px;
+    margin-top: 36px;
+    margin-left: -100px;
+}
+
+.nav-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: -30px;
+}
+.file-home img {
+    filter: invert(100%);
+}
+
+.file-home h3 {
+    color: black;
+}
+.file-file 
+{
+    background: linear-gradient(to left, #73c8a3, #54bd90);
+}
+.file-item {
+    width: 60%;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 44px;
+    margin-top: 30px;
+}
+.file-file img 
+{
+    filter: invert(100%);
+}
+.file-file h3 
+{
+    color: white;
+}
+.file-item img {
+    width: 25px;
+    height: 25px;
+    margin-left: -85px;
+}
+
+.file-item h3 {
+    font-weight: 400;
+    font-size: 19px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.file-item:hover {
+    background: linear-gradient(to left, #73c8a3, #54bd90);
+}
+
+.about-item {
+    width: 60%;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 44px;
+    margin-top: 30px;
+}
+
+.about-item img {
+    width: 25px;
+    height: 25px;
+    margin-left: -75px;
+}
+
+.about-item h3 {
+    font-weight: 400;
+    font-size: 19px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.about-item:hover {
+    background: linear-gradient(to left, #73c8a3, #54bd90);
+}
+
+.contact-item {
+    width: 60%;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 44px;
+    margin-top: 30px;
+    transition: background 0.5s ease;
+}
+
+.contact-item:hover {
+    background: linear-gradient(to left, #73c8a3, #54bd90);
+}
+
+.contact-item img {
+    width: 25px;
+    height: 25px;
+    margin-left: -70px;
+}
+
+.contact-item h3 {
+    font-weight: 400;
+    font-size: 19px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.bottom-line {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.bottom-line .line {
+    border: 0.5px solid #dadada;
+    width: 200px;
+    margin-top: 60px;
+}
+
+.account {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    cursor: pointer;
+}
+
+.account .user-dp {
+    object-fit: cover;
+    border: 4px solid #dadada;
+    border-radius: 50%;
+}
+
+.account .user-dp img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+.account .name {
+    margin: 0 10px;
+}
+
+.account .name h3 {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.account .name h6 {
+    font-size: 12px;
+    font-weight: 300;
+    color: #6c5dd3;
+    text-align: center;
+}
+
+/* Code for Right Side */
+.right-navbar {
+    flex-basis: 80%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.top-navbar {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.web-name {
+    flex-basis: 30%;
+    width: 100%;
+}
+
+.web-name h1 {
+    text-align: center;
+}
+
+.web-name img {
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+    visibility: hidden;
+    display: none;
+}
+
+.top-nav-items {
+    flex-basis: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.search-bar {
+    flex-basis: 30%;
+    margin-right: 20px;
+    position: relative;
+}
+
+.search-bar input {
+    width: 100%;
+    height: 45px;
+    border: none;
+    background: none;
+    border: 1px solid rgb(22, 17, 17);
+    border-radius: 50px;
+    padding-left: 40px;
+    padding-right: 15px;
+    color: #595656;
+}
+
+.search-bar input:focus {
+    outline: none;
+}
+
+.search-bar img {
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    width: 20px;
+    height: 20px;
+}
+
+.sun {
+    margin-right: 40px;
+}
+
+.sun img {
+    width: 40px;
+    height: 40px;
+    margin-top: 6px;
+    margin-right: 40px;
+}
+
+.language img {
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    margin-right: 40px;
+}
+
+.notification img {
+    width: 80px;
+    height: 80px;
+    margin-top: 20px;
+    margin-right: 40px;
+}
+
+.account-dp {
+    object-fit: cover;
+    margin-right: 60px;
+}
+
+.account-dp img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 4px solid #dadada;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.top-navbar-bottom-line {
+    width: 100%;
+}
+
+.top-navbar-bottom-line .line {
+    background-color: #dadada;
+    height: 1px;
+}
+.addfile-container 
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.addfile-inner-container 
+{
+    width: 90%;
+    height: 90%;
+    background: white;
+    border-radius: 20px;
+}
+.addfile-inner-container .file-upload-text h3
+{
+    margin: 20px;
+}
+.upload-file-container
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.addfile-inner-container .upload-file-container .upload-file
+{
+    width: 60%;
+    height: 40%;
+    border: 4px dashed #54bd90;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.addfile-inner-container .upload-file-container .upload-file img 
+{
+    width: 40px;
+    height: 40px;
+}
+.addfile-inner-container .upload-file-container .upload-file h3
+{
+    font-size: 18px;
+    font-weight: 300;
+    margin-top: 15px;
+}
+.addfile-inner-container .upload-file-container .upload-file p 
+{
+    font-weight: 200;
+    font-size: 12px;
+}
+.addfile-inner-container .upload-file-container .upload-file input 
+{
+    border: none;
+}
+.addfile-inner-container .upload-file-container .upload-file input
+{
+    display: none;
+}
+.addfile-inner-container .upload-file-container .upload-file #open-file-btn
+{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #dadada;
+}
+.addfile-inner-container .upload-file-container .upload-btn
+{
+    width: 30%;
+    margin-top: 20px;
+    background: none;
+    border: none;
+    background: linear-gradient(to left, #73c8a3,
+        #54bd90);
+    color: white;
+    padding: 10px 0;
+    border-radius: 10px;
+}
+.file-name 
+{
+    width: 30%;
+    margin-top: 20px;
+    background: none;
+    border: none;
+    border: 1px solid #54bd90;
+    padding: 10px 0;
+    padding-left: 10px;
+    border-radius: 10px;
+}
+.file-name:focus 
+{
+    outline: none;
+}
+@media (max-width: 400px) {
+    .main-home-container {
+        position: relative;
+    }
+
+    .left-navbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: 100% !important;
+        overflow: hidden;
+        visibility: hidden;
+    }
+
+    .right-navbar {
+        flex-basis: 100% !important;
+    }
+
+    .top-navbar {
+        display: block;
+        height: auto !important;
+    }
+
+    .web-name {
+        flex-basis: 0 !important;
+        width: 100% !important;
+    }
+
+    .top-nav-items {
+        flex-basis: 0 !important;
+        width: 100% !important;
+    }
+
+    .account-dp img {
+        margin-right: -25px !important;
+        margin-top: 8px;
+    }
+
+    .sun {
+        margin-right: 0 !important;
+    }
+
+    .language {
+        margin-right: -10px !important;
+    }
+
+    .notification {
+        margin-right: 0 !important;
+        margin-top: 6px;
+    }
+
+    .search-bar {
+        margin-right: 0 !important;
+        margin: 0 20px !important;
+    }
+
+    .search-bar {
+        margin-left: 20px !important;
+    }
+
+    .web-name img {
+        visibility: visible !important;
+        display: block !important;
+    }
+
+    .left-navbar .logo img {
+        margin-top: 10px;
+    }
+
+    .account {
+        bottom: 100px !important;
+    }
+
+    .file-item-1 {
+        margin-top: 10px;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+    }
+
+    .pagination .item {
+        margin-right: 15px;
+    }
+        .addfile-inner-container .upload-file-container .upload-btn {
+            width: 70%;
+            margin-top: 20px;
+            background: none;
+            border: none;
+            background: linear-gradient(to left, #73c8a3,
+                    #54bd90);
+            color: white;
+            padding: 10px 0;
+            border-radius: 10px;
+        }
+    
+        .file-name {
+            width: 70%;
+            margin-top: 20px;
+            background: none;
+            border: none;
+            border: 1px solid #54bd90;
+            padding: 10px 0;
+            padding-left: 10px;
+            border-radius: 10px;
+        }
+}
+
+@media (max-width: 1050px) {
+    .left-navbar {
+        background-color: white;
+        height: 100vh;
+        position: relative;
+        border: none !important;
+        flex-basis: 20%;
+    }
+
+    .left-navbar .logo {
+        /* width: 100%; */
+        display: flex;
+        justify-content: center;
+    }
+
+    .left-navbar .logo img {
+        width: 70px;
+        height: 70px;
+        margin-top: 70px;
+    }
+
+    .menu-text h4 {
+        text-align: center;
+        font-weight: 300;
+        font-size: 16px;
+        margin-top: 36px;
+        margin-left: 0 !important;
+    }
+
+    .nav-items {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0 !important;
+    }
+    .file-item {
+        width: 60%;
+        height: 46px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 44px;
+        margin-top: 30px;
+    }
+
+    .file-item img {
+        width: 25px;
+        height: 25px;
+        margin-left: 0 !important;
+    }
+
+    .file-item h3 {
+        font-weight: 400;
+        font-size: 19px;
+        margin-top: 10px;
+        margin-left: 15px;
+    }
+
+    .file-item:hover {
+        background: linear-gradient(to left, #73c8a3, #54bd90);
+    }
+
+    .about-item {
+        width: 60%;
+        height: 46px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 44px;
+        margin-top: 30px;
+    }
+
+    .about-item img {
+        width: 25px;
+        height: 25px;
+        margin-left: 0 !important;
+    }
+
+    .about-item h3 {
+        font-weight: 400;
+        font-size: 19px;
+        margin-top: 10px;
+        margin-left: 15px;
+    }
+
+    .about-item:hover {
+        background: linear-gradient(to left, #73c8a3, #54bd90);
+    }
+
+    .contact-item {
+        width: 60%;
+        height: 46px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 44px;
+        margin-top: 30px;
+        transition: background 0.5s ease;
+    }
+
+    .contact-item:hover {
+        background: linear-gradient(to left, #73c8a3, #54bd90);
+    }
+
+    .contact-item img {
+        width: 25px;
+        height: 25px;
+        margin-left: 0 !important;
+    }
+
+    .contact-item h3 {
+        font-weight: 400;
+        font-size: 19px;
+        margin-top: 10px;
+        margin-left: 15px;
+    }
+
+    .bottom-line {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .bottom-line .line {
+        border: 0.5px solid #dadada;
+        width: 200px;
+        margin-top: 60px;
+    }
+
+    .account {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 20px;
+        cursor: pointer;
+    }
+
+    .account .user-dp {
+        object-fit: cover;
+        border: 4px solid #dadada;
+        border-radius: 50%;
+    }
+
+    .account .user-dp img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+    }
+
+    .account .name {
+        margin: 0 10px;
+    }
+
+    .account .name h3 {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .account .name h6 {
+        font-size: 12px;
+        font-weight: 300;
+        color: #6c5dd3;
+        text-align: center;
+    }
+}
+
+@media (max-width: 800px) {
+    .main-home-container {
+        position: relative;
+    }
+
+    .left-navbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: 100% !important;
+        overflow: hidden;
+        visibility: hidden;
+    }
+
+    .right-navbar {
+        flex-basis: 100% !important;
+    }
+
+    .top-navbar {
+        display: block;
+        height: auto !important;
+    }
+
+    .web-name {
+        flex-basis: 0 !important;
+        width: 100% !important;
+    }
+
+    .top-nav-items {
+        flex-basis: 0 !important;
+        width: 100% !important;
+    }
+
+    .account-dp img {
+        margin-right: -25px !important;
+        margin-top: 8px;
+    }
+
+    .sun {
+        margin-right: 0 !important;
+    }
+
+    .language {
+        margin-right: -10px !important;
+    }
+
+    .notification {
+        margin-right: 0 !important;
+        margin-top: 6px;
+    }
+
+    .search-bar {
+        margin-right: 0 !important;
+        margin: 0 20px !important;
+    }
+
+    .search-bar {
+        margin-left: 20px !important;
+    }
+
+    .web-name img {
+        visibility: visible !important;
+        display: block !important;
+    }
+
+    .left-navbar .logo img {
+        margin-top: 10px;
+    }
+
+    .account {
+        bottom: 100px !important;
+    }
+
+    .file-item-1 {
+        margin-top: 10px;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+    }
+
+    .pagination .item {
+        margin-right: 15px;
+    }
+}
