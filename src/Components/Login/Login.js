@@ -32,7 +32,15 @@ const Login = () => {
       const response = await axios.post(
         "https://imran-archive-backend1.vercel.app/api/v1/admin/login",
         data,
-        { withCredentials: true }
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          mode: "cors",
+          credentials: "include",
+          withCredentials: true,
+        }
       );
       if (response) {
         setLoading(false);
