@@ -45,6 +45,7 @@ const Login = () => {
       if (response) {
         setLoading(false);
         navigate("/addfile");
+        console.log(response.data);
       }
     } catch (error) {
       setLoading(false);
