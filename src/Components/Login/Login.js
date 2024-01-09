@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import LoginIllustrator from "../../Images/loginillustrator.svg";
 import Logo from "../../Images/logo.svg";
@@ -7,7 +7,44 @@ import Twitter from "../../Images/twitter (1).png";
 import Linkedin from "../../Images/linkedin.png";
 import EmailIcon from "../../Images/email.svg";
 import PasswordIcon from "../../Images/lock.svg";
+import axios from "axios";
+import { ScaleLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const [adminEmail, setEmail] = useState("");
+  const [adminPassword, setPassword] = useState("");
+  const [errorMessage, setMessage] = useState("");
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const handleForm = async () => {
+    if (!adminEmail) {
+      setMessage("Email is missing");
+      return;
+    }
+    if (!adminPassword) {
+      setMessage("Password is missing");
+      return;
+    }
+    try {
+      setLoading(true);
+      const data = { adminEmail, adminPassword };
+      const response = await axios.post(
+        "https://imran-archive-backend1.vercel.app/api/v1/admin/login",
+        data
+      );
+      if (response) {
+        setLoading(false);
+        navigate("/addfile");
+      }
+    } catch (error) {
+      setLoading(false);
+      setMessage(
+        error.response?.data?.message || "An error occurred during login."
+      );
+    }
+  };
+
   return (
     <>
       <div className="main-login-container">
@@ -50,12 +87,16 @@ const Login = () => {
               <div className="line-text">or Sign in with Email</div>
               <div className="right-line"></div>
             </div>
+            <div className="email-message">
+              <h6 className="text-center text-danger">{errorMessage}</h6>
+            </div>
             <div className="email">
               <h3 className="email-text">Email address</h3>
               <input
                 type="email"
                 className="email-input"
                 placeholder="Enter your email"
+                onChange={(e) => setEmail(e.target.value)}
               />
               <img src={EmailIcon} alt="" className="email-icon" />
             </div>
@@ -65,6 +106,7 @@ const Login = () => {
                 type="password"
                 className="password-input"
                 placeholder="Enter your password"
+                onChange={(e) => setPassword(e.target.value)}
               />
               <img src={PasswordIcon} alt="" className="password-icon" />
             </div>
@@ -72,7 +114,19 @@ const Login = () => {
               <input type="checkbox" />
               <h3>Remember me</h3>
             </div>
-            <button className="signin-btn">Sign in</button>
+            <button className="signin-btn" onClick={handleForm}>
+              {loading ? (
+                <ScaleLoader
+                  color={"#fff"}
+                  loading={loading}
+                  size={50}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              ) : (
+                "Sign in"
+              )}
+            </button>
           </div>
         </div>
       </div>

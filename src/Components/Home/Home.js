@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Home.css";
 import Logo from "../../Images/logo.svg";
 import HomeIcon from "../../Images/homeicon.svg";
@@ -9,16 +8,18 @@ import ContactIcon from "../../Images/contacticon.svg";
 import Arrow from "../../Images/small-right.svg";
 import Imran from "../../Images/imranmalik2.jpg";
 import Notification from "../../Images/notification.svg";
-import Language from "../../Images/language.svg";
-import Sun from "../../Images/Sun.svg";
+import Language from "../../Images/Language.png";
+import Sun from "../../Images/Sun.png";
 import SearchIcon from "../../Images/search-icon.svg";
-import ThreeDot from "../../Images/threedots.svg";
+import Download from "../../Images/download.png";
 import File from "../../Images/File.png";
 import LeftArrow from "../../Images/left-arrow.png";
 import RightArrow from "../../Images/right-arrow.png";
 import Menu from "../../Images/menus.png";
 import Cross from "../../Images/cross.png";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { ScaleLoader } from "react-spinners";
 const SplashScreen = () => {
   return (
     <div
@@ -40,20 +41,41 @@ const SplashScreen = () => {
 };
 const Home = () => {
   const [splashScreen, setSplashScreen] = useState(true);
+  const [files, setFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const indexOfLastFile = currentPage * 6;
+  const indexOfFirstFile = indexOfLastFile - 6;
+  useEffect(() => {
+    const fetchFiles = async () => {
+      setLoading(true);
+      const response = await axios.get(
+        "https://imran-archive-backend1.vercel.app/api/v1/file/loadfiles"
+      );
+      setFiles(response.data.files);
+      if (response) {
+        setLoading(false);
+      }
+    };
+    fetchFiles();
+  }, []);
+  const prevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const nextPage = () => {
+    if (indexOfLastFile < files.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  const currentFiles = files.slice(indexOfFirstFile, indexOfLastFile);
   useEffect(() => {
     const id = setTimeout(() => {
       setSplashScreen(false);
-    }, 2000);
+    }, 1000);
     return () => clearTimeout(id);
   });
-  const enterMouse = () => {
-    const download = document.getElementById("download");
-    download.style.visibility = "visible";
-  };
-  const leaveMouse = () => {
-    const download = document.getElementById("download");
-    download.style.visibility = "hidden";
-  };
   const hideSidebar = () => {
     const leftNav = document.getElementById("left-nav");
     const cross = document.getElementById("crossIcon");
@@ -161,78 +183,80 @@ const Home = () => {
             <div className="folder-container">
               <div className="container inner-container">
                 <div className="files-name">
-                  <h3>My files</h3>
-                  <h4>40 files</h4>
+                  <h3>My Files</h3>
+                  <h4>{files.length + " Files"}</h4>
                 </div>
-                <div className="row folders">
-                  <div className="col-md-4">
-                    <div className="file-item-1 card" onMouseLeave={leaveMouse}>
-                      <img src={File} alt="" />
-                      <div className="file-details">
-                        <h2>Filename.docs</h2>
-                        <img src={ThreeDot} alt="" onMouseEnter={enterMouse} />
-                        <button className="download-btn" id="download">
-                          Download
+                {loading ? (
+                  <div className="loading">
+                    <ScaleLoader
+                      color={"#000"}
+                      loading={loading}
+                      size={150}
+                      aria-label="Loading Spinner"
+                      data-testid="loader"
+                    />
+                  </div>
+                ) : (
+                  <div className="row folders">
+                    {currentFiles.length === 0 ? (
+                      <h1>No Result in database</h1>
+                    ) : (
+                      currentFiles.map((item) => (
+                        <div className="col-md-4">
+                          <div className="file-item-1 card">
+                            <img src={File} alt="" />
+                            <div className="file-details">
+                              <h2>{item.fileName}</h2>
+                              <a
+                                href={item.fileURL}
+                                download={encodeURIComponent(item.fileName)}
+                              >
+                                <img
+                                  src={Download}
+                                  alt=""
+                                  width={35}
+                                  height={35}
+                                />
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                )}
+                {files.length <= 6 ? (
+                  ""
+                ) : (
+                  <div className="pagination">
+                    {currentPage === 1 ? (
+                      ""
+                    ) : (
+                      <div className="item">
+                        <button
+                          style={{ background: "transparent", border: "none" }}
+                          onClick={prevPage}
+                          disabled={currentPage === 1}
+                        >
+                          <img src={LeftArrow} alt="" />
                         </button>
                       </div>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="file-item-1 card">
-                      <img src={File} alt="" />
-                      <div className="file-details">
-                        <h2>Filename.docs</h2>
-                        <img src={ThreeDot} alt="" />
+                    )}
+                    {indexOfLastFile >= files.length ? (
+                      ""
+                    ) : (
+                      <div className="item card">
+                        <button
+                          style={{ background: "transparent", border: "none" }}
+                          onClick={nextPage}
+                          disabled={indexOfLastFile >= files.length}
+                        >
+                          <img src={RightArrow} alt="" />
+                        </button>
                       </div>
-                    </div>
+                    )}
                   </div>
-                  <div className="col-md-4">
-                    <div className="file-item-1 card">
-                      <img src={File} alt="" />
-                      <div className="file-details">
-                        <h2>Filename.docs</h2>
-                        <img src={ThreeDot} alt="" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="row folders">
-                  <div className="col-md-4">
-                    <div className="file-item-1 card">
-                      <img src={File} alt="" />
-                      <div className="file-details">
-                        <h2>Filename.docs</h2>
-                        <img src={ThreeDot} alt="" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="file-item-1 card">
-                      <img src={File} alt="" />
-                      <div className="file-details">
-                        <h2>Filename.docs</h2>
-                        <img src={ThreeDot} alt="" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="file-item-1 card">
-                      <img src={File} alt="" />
-                      <div className="file-details">
-                        <h2>Filename.docs</h2>
-                        <img src={ThreeDot} alt="" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="pagination">
-                  <div className="item">
-                    <img src={LeftArrow} alt="" />
-                  </div>
-                  <div className="item card">
-                    <img src={RightArrow} alt="" />
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
