@@ -910,13 +910,16 @@
   }
 }
 
-@media (max-height: 800px)
-{
-    .left-navbar .account
-    {
-      position: absolute;
-      margin-top: 30px;
-    }
+@media (max-height: 800px) {
+  .left-navbar .account {
+    position: absolute;
+    margin-top: 30px;
+  }
+  .left-navbar .logo img {
+    width: 70px;
+    height: 70px;
+    margin-top: 10px;
+  }
 }
 @media (max-height: 300px) {
   .left-navbar .account {
