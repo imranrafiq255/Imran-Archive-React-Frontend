@@ -14,7 +14,7 @@ import SearchIcon from "../../Images/search-icon.svg";
 import Menu from "../../Images/menus.png";
 import Cross from "../../Images/cross.png";
 import Upload from "../../Images/uploadicon.svg";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ScaleLoader } from "react-spinners";
 const Home = () => {
@@ -22,7 +22,7 @@ const Home = () => {
   const [file, setFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
   const handleForm = async () => {
     if (file == null) {
       setErrorMessage("file is required");
@@ -33,6 +33,7 @@ const Home = () => {
       return;
     }
     try {
+      navigate("/");
       setLoading(true);
       const response = await axios.post(
         "https://imran-archive-backend1.vercel.app/api/v1/file/uploadfile",
@@ -47,7 +48,7 @@ const Home = () => {
       if (response) {
         setLoading(false);
         console.log(response);
-        history.push("/");
+        navigate("/");
       }
     } catch (error) {
       setErrorMessage(error);
