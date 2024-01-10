@@ -10,6 +10,7 @@ import PasswordIcon from "../../Images/lock.svg";
 import axios from "axios";
 import { ScaleLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
+axios.defaults.withCredentials = true;
 const Login = () => {
   const [adminEmail, setEmail] = useState("");
   const [adminPassword, setPassword] = useState("");
