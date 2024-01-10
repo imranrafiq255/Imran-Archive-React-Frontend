@@ -44,6 +44,7 @@ const Login = () => {
       );
 
       if (response) {
+        console.log("here");
         setLoading(false);
         navigate("/addfile");
         console.log(response);
