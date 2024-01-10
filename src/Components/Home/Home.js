@@ -55,7 +55,13 @@ const Home = () => {
         );
 
         if (response && response.data && response.data.files) {
-          setFiles(response.data.files);
+          const sortedFiles = response.data.files.sort((a, b) => {
+            const dateA = new Date(a.createdAt || a.updatedAt);
+            const dateB = new Date(b.createdAt || b.updatedAt);
+            return dateB - dateA;
+          });
+
+          setFiles(sortedFiles);
         }
 
         setLoading(false);
