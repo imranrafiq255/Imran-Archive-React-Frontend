@@ -45,12 +45,15 @@ const Login = () => {
       const response = await fetch(
         "https://imran-archive-backend1.vercel.app/api/v1/admin/login",
         {
-          method: "GET",
+          method: "POST",
           credentials: "include",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify(data),
         }
       );
+
       if (response) {
         setLoading(false);
         navigate("/addfile");
