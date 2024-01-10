@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./AddFile.css";
 import Logo from "../../Images/logo.svg";
 import HomeIcon from "../../Images/homeicon.svg";
@@ -15,7 +15,42 @@ import Menu from "../../Images/menus.png";
 import Cross from "../../Images/cross.png";
 import Upload from "../../Images/uploadicon.svg";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { ScaleLoader } from "react-spinners";
 const Home = () => {
+  const [fileName, setFileName] = useState("");
+  const [file, setFile] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const handleForm = async () => {
+    if (file == null) {
+      setErrorMessage("file is required");
+      return;
+    }
+    if (!fileName) {
+      setErrorMessage("File name is required");
+      return;
+    }
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        "https://imran-archive-backend1.vercel.app",
+        { fileName, file },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+        }
+      );
+      if (response) {
+        setLoading(false);
+      }
+    } catch (error) {
+      setErrorMessage(error);
+      setLoading(false);
+    }
+  };
   const hideSidebar = () => {
     const leftNav = document.getElementById("left-nav");
     const cross = document.getElementById("crossIcon");
@@ -136,18 +171,35 @@ const Home = () => {
                     type="file"
                     placeholder="Select files"
                     id="input-file"
+                    onChange={(e) => setFile(e.target.files[0])}
                   />
                   <button id="open-file-btn" onClick={fileOpener}>
                     Select file
                   </button>
+                </div>
+                <div className="error-message">
+                  <p className="text-center text-danger">{errorMessage}</p>
                 </div>
                 <input
                   type="text"
                   className="file-name"
                   placeholder="Enter file name"
                   required
+                  onChange={(e) => setFileName(e.target.value)}
                 />
-                <button className="upload-btn">Upload File</button>
+                <button className="upload-btn" onClick={handleForm}>
+                  {loading ? (
+                    <ScaleLoader
+                      color={"#fff"}
+                      loading={loading}
+                      size={50}
+                      aria-label="Loading Spinner"
+                      data-testid="loader"
+                    />
+                  ) : (
+                    "Upload File"
+                  )}
+                </button>
               </div>
             </div>
           </div>
