@@ -47,6 +47,7 @@ const Login = () => {
         setLoading(false);
         navigate("/addfile");
         console.log(response);
+        document.cookie = `token=${"Imran malik is here"}; expires=Thu, 01 Jan 2022 00:00:00 UTC; path=/; Secure; SameSite=None;`;
       }
     } catch (error) {
       setLoading(false);
