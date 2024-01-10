@@ -918,7 +918,7 @@
       margin-top: 30px;
     }
 }
-@media (max-height: 600px) {
+@media (max-height: 300px) {
   .left-navbar .account {
     position: absolute;
     margin-top: 30px;
