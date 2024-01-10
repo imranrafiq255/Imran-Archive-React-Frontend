@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./AddFile.css";
 import Logo from "../../Images/logo.svg";
 import HomeIcon from "../../Images/homeicon.svg";
@@ -14,7 +14,7 @@ import SearchIcon from "../../Images/search-icon.svg";
 import Menu from "../../Images/menus.png";
 import Cross from "../../Images/cross.png";
 import Upload from "../../Images/uploadicon.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import axios from "axios";
 import { ScaleLoader } from "react-spinners";
 const Home = () => {
@@ -22,6 +22,7 @@ const Home = () => {
   const [file, setFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
   const handleForm = async () => {
     if (file == null) {
       setErrorMessage("file is required");
@@ -46,7 +47,7 @@ const Home = () => {
       if (response) {
         setLoading(false);
         console.log(response);
-        window.location("/");
+        history.push("/");
       }
     } catch (error) {
       setErrorMessage(error);
