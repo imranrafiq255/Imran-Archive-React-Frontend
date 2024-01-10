@@ -34,7 +34,7 @@ const Home = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "https://imran-archive-backend1.vercel.app",
+        "https://imran-archive-backend1.vercel.app/api/v1/file/uploadfile",
         { fileName, file },
         {
           headers: {
@@ -46,6 +46,7 @@ const Home = () => {
       if (response) {
         setLoading(false);
         console.log(response);
+        window.location("/");
       }
     } catch (error) {
       setErrorMessage(error);
