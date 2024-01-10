@@ -32,7 +32,8 @@ const Login = () => {
       const data = { adminEmail, adminPassword };
       const response = await axios.post(
         "https://imran-archive-backend1.vercel.app/api/v1/admin/login",
-        data
+        data,
+        { withCredentials: true }
       );
 
       if (response) {
