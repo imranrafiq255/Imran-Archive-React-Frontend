@@ -31,24 +31,12 @@ const Login = () => {
       const data = { adminEmail, adminPassword };
       const response = await axios.post(
         "https://imran-archive-backend1.vercel.app/api/v1/admin/login",
-        data,
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          mode: "cors",
-          credentials: "include",
-          withCredentials: true,
-        }
+        data
       );
 
       if (response) {
-        console.log("here");
         setLoading(false);
         navigate("/addfile");
-        console.log(response);
-        document.cookie = `token=${"Imran malik is here"}; expires=Thu, 01 Jan 2022 00:00:00 UTC; path=/; Secure; SameSite=None;`;
       }
     } catch (error) {
       setLoading(false);

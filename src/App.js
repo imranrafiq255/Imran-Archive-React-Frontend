@@ -24,18 +24,20 @@ const App = () => {
           "https://imran-archive-backend1.vercel.app/api/v1/admin/loadadmin"
         );
         console.log(response);
-        if (response) {
+        if (response && response.data) {
           setAuthentication(true);
         }
       } catch (error) {
-        console.log(error.response.data.message);
+        console.log(
+          error.response?.data?.message ||
+            "An error occurred in loading the user"
+        );
         setAuthentication(false);
       }
     };
 
     loadUser();
   }, []);
-  console.log(isAuthenticated);
   return (
     <>
       <Router>
@@ -43,8 +45,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route
             path="/addfile"
-            element={isAuthenticated ? <AddFile /> : <Login />}
+            element={isAuthenticated ? <AddFile /> : <Navigate to="/login" />}
           />
+
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />

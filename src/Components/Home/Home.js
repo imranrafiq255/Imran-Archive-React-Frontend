@@ -48,15 +48,23 @@ const Home = () => {
   const indexOfFirstFile = indexOfLastFile - 6;
   useEffect(() => {
     const fetchFiles = async () => {
-      setLoading(true);
-      const response = await axios.get(
-        "https://imran-archive-backend1.vercel.app/api/v1/file/loadfiles"
-      );
-      setFiles(response.data.files);
-      if (response) {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          "https://imran-archive-backend1.vercel.app/api/v1/file/loadfiles"
+        );
+
+        if (response && response.data && response.data.files) {
+          setFiles(response.data.files);
+        }
+
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching files:", error);
         setLoading(false);
       }
     };
+
     fetchFiles();
   }, []);
   const prevPage = () => {
