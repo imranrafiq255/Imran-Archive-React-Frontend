@@ -77,7 +77,7 @@ const Home = () => {
     };
 
     fetchFiles();
-  }, []);
+  }, [searchQuery]);
   const prevPage = () => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
