@@ -41,6 +41,7 @@ const SplashScreen = () => {
 };
 const Home = () => {
   const [splashScreen, setSplashScreen] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -61,7 +62,11 @@ const Home = () => {
             return dateB - dateA;
           });
 
-          setFiles(sortedFiles);
+          const filteredFiles = sortedFiles.filter((file) =>
+            file.fileName.toLowerCase().includes(searchQuery.toLowerCase())
+          );
+
+          setFiles(filteredFiles);
         }
 
         setLoading(false);
@@ -173,7 +178,11 @@ const Home = () => {
                 <h1>Imran Archive</h1>
               </div>
               <div className="search-bar">
-                <input type="text" placeholder="Search here..." />
+                <input
+                  type="text"
+                  placeholder="Search here..."
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
                 <img src={SearchIcon} alt="" />
               </div>
               <div className="top-nav-items">
