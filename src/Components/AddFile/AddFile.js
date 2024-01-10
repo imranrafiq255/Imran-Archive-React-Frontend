@@ -33,7 +33,6 @@ const Home = () => {
       return;
     }
     try {
-      navigate("/");
       setLoading(true);
       const response = await axios.post(
         "https://imran-archive-backend1.vercel.app/api/v1/file/uploadfile",
