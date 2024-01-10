@@ -43,7 +43,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route
             path="/addfile"
-            element={isAuthenticated ? <AddFile /> : <Navigate to="/login" />}
+            element={isAuthenticated ? <AddFile /> : <Login />}
           />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
