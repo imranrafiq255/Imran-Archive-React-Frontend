@@ -35,6 +35,7 @@ const App = () => {
 
     loadUser();
   }, []);
+  console.log(isAuthenticated);
   return (
     <>
       <Router>
