@@ -45,10 +45,12 @@ const Home = () => {
       );
       if (response) {
         setLoading(false);
+        console.log(response);
       }
     } catch (error) {
       setErrorMessage(error);
       setLoading(false);
+      console.log(error);
     }
   };
   const hideSidebar = () => {
