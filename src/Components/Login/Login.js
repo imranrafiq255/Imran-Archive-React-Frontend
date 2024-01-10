@@ -29,17 +29,26 @@ const Login = () => {
     try {
       setLoading(true);
       const data = { adminEmail, adminPassword };
-      const response = await axios.post(
+      // const response = await axios.post(
+      //   "https://imran-archive-backend1.vercel.app/api/v1/admin/login",
+      //   data,
+      //   {
+      //     headers: {
+      //       Accept: "application/json",
+      //       "Content-Type": "application/json",
+      //     },
+      //     mode: "cors",
+      //     credentials: "include",
+      //     withCredentials: true,
+      //   }
+      // );
+      const response = await fetch(
         "https://imran-archive-backend1.vercel.app/api/v1/admin/login",
-        data,
         {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          mode: "cors",
+          method: "GET",
           credentials: "include",
-          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
         }
       );
       if (response) {
